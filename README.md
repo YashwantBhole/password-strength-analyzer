@@ -106,8 +106,9 @@ Features a Strong Password Generator, making it more practical
 
 Beginner-friendly, but scalable for advanced features
 
-📸 Screenshots
-![Weak](screenshots/weak.png)
-![Suggestion](screenshots/suggestion.png)
-![Strong](screenshots/strong.png)
 
+👨‍💻 Connecgt with Me
+Developed by Yashwant Bhole
+
+- [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yashwantbhole/)  
+- [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/YashwantBhole)  
