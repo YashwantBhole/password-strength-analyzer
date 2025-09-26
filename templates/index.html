@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Checker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Password Strength Analyzer</h1>
+    <form method="POST">
+      <input type="password" name="password" placeholder="Enter your password" required>
+      <button type="submit">Check Strength</button>
+      <button type='button' id="suggestBtn">Suggest Strong Password</button>
+      <p id='suggestion'></p>
+    </form>
+
+    {% if result %}
+      <div id = "resultBox" class="result  {{ 'weak' if 'Weak' in result else 'medium' if 'Medium' in result else 'strong' }}">
+        {{ result }}
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+
+        const resultBox = document.getElementById("resultBox");
+        if(resultBox){
+            setTimeout(() => {
+             resultBox.style.display = "none"
+             const url = window.location.origin + window.location.pathname;
+             window.history.replaceState({},document.title,url);
+            }, 5000);
+          }
+
+          document.getElementById('suggestBtn').addEventListener("click", function() {
+            fetch("/suggest-password")
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById("suggestion").innerText = "💡Suggested Strong Password: " + data.password
+              downloadPasswordHTML(data.password)
+            })
+            .catch(error => console.error("Error : ", error));
+          });
+
+          function downloadPasswordHTML(password){
+            const htmlContent = 
+          `<!DOCTYPE html>
+            <html>
+             <head>
+              <title>Suggested Password</title>
+              <style>
+              body { font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px; }
+              h2 { color: #333; }
+              .password { font-size: 20px; color: green; font-weight: bold; }
+              .msg { margin-top: 20px; font-size: 16px; color: #555; }
+              a { color: blue; text-decoration: underline; }
+              </style>
+             </head>
+            <body>
+              <h2>Your Suggested Password</h2><p class="password">${password}</p>
+              <h3>🔐 Cybersecurity Tips</h3>
+                <ul>
+                   <li>Always use strong passwords to stay safe online.</li>
+                   <li>Make your passwords at least 12+ characters long.</li>
+                   <li>Mix uppercase, lowercase, numbers, and special characters.</li>
+                   <li>Avoid using personal info like names, birthdays, or phone numbers.</li>
+                  <li>Never reuse the same password across multiple accounts.</li>
+                  <li>Enable two-factor authentication (2FA) wherever possible.</li>
+                  <li>Regularly update your passwords every few months.</li>
+              </ul>
+              <p><b>Why?</b> Strong passwords make it much harder for attackers to crack your accounts through brute force or dictionary attacks.</p>
+            <p style="margin-top:120px; font-size:16px; display:flex; align-items:center; gap:6px;">
+             Created by 
+            <a href="https://github.com/YashwantBhole" target="_blank" style="text-decoration:none; color:#000; font-weight:bold; display:flex; align-items:center; gap:6px;">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+            alt="GitHub" width="20" height="20" style="vertical-align:middle;">
+            Yashwant Bhole
+            </a>
+            </p>
+
+           </body>
+         </html>
+          `;
+
+          const blob = new Blob([htmlContent], {type:"text/html"});
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = "SuggestedPassword.html";
+          link.click();   
+                          
+          }
+
+  </script>
+</body>
+</html>
