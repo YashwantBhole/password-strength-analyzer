@@ -22,6 +22,10 @@ Built with **Python (Flask)**, **HTML/CSS**, and **JavaScript** for a clean, int
 - ✅ Fully responsive and **professional UI**  
 
 ---
+## 🌐 Live Demo
+[Click here to try the Password Strength Analyzer](https://password-strength-analyzer-8243.onrender.com/)
+
+---
 ## 🖥️ Demo Screenshots
 
 **1️⃣ Password Strength Weak**  
