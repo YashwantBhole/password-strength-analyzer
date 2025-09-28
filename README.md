@@ -78,27 +78,6 @@ python app.py
 
 Visit http://127.0.0.1:5000
 ```
-
-💡 Potential Enhancements
-
-Real-time password strength meter while typing
-
-Integration with HaveIBeenPwned API to check if a password was leaked
-
-Password hashing demonstration (SHA256 / bcrypt)
-
-Deploy on Heroku / Render / Railway for a live demo
-
-🎯 Why Showcase This Project?
-
-Demonstrates cybersecurity awareness in password policies
-
-Shows Flask backend skills + frontend integration
-
-Features a Strong Password Generator, making it more practical
-
-Beginner-friendly, but scalable for advanced features
-
  
  ## 👨‍💻 Connect with Me  
 
